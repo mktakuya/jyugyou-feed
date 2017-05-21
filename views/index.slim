@@ -1,0 +1,8 @@
+.col-md-12
+  p 苫小牧高専Webサイトの授業変更情報ページから授業変更情報を取得し、iCalendarフィードを提供しています。
+
+  ul
+    - @classes.each do |k, v|
+      li
+        a href="/feeds?class=#{k.to_s.upcase}" = v
+

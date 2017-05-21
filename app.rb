@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/contrib'
 require "sinatra/reloader"
 require 'slim'
+require './classes'
 
 class Jyugyou < Sinatra::Base
   register Sinatra::Contrib
@@ -15,6 +16,7 @@ class Jyugyou < Sinatra::Base
   end
 
   get '/' do
+    @classes = CLASSES
     slim :index
   end
 
