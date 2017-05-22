@@ -1,5 +1,6 @@
 .envrc
 /tmp/pids/*
+systemd_config
 
 # Created by https://www.gitignore.io/api/vim,ruby,macos,linux,windows
 
