@@ -36,7 +36,15 @@ class Jyugyou < Sinatra::Base
       }
       calendar = Icalendar::Calendar.new
       calendar.append_custom_property("X-WR-CALNAME;VALUE=TEXT", "TNCT #{conds[:class]} 授業変更情報")
-      calendar.timezone { |t| t.tzid = 'Asia/Tokyo' }
+      calendar.timezone do |t|
+        t.tzid = 'Asia/Tokyo'
+        t.standard do |s|
+          s.tzoffsetfrom = '+0900'
+          s.tzoffsetto   = '+0900'
+          s.tzname       = 'JST'
+          s.dtstart      = '19700101T000000'
+        end
+      end
 
       @db[:jyugyous].where(conds).all.each do |col|
         calendar.event do |e|
