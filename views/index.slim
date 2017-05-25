@@ -5,11 +5,22 @@
       | 本家
     | の授業変更情報も確認してください。
 
-  p 苫小牧高専Webサイトの授業変更情報ページから授業変更情報を取得し、iCalendarフィードを提供しています。
+  p 苫小牧高専Webサイトの授業変更情報ページから授業変更情報を取得し、クラス別のiCalendarフィードを提供しています。
 
-  p 自分の所属するクラスのカレンダーのURLをコピーして、iCalendar形式に対応しているカレンダー製品に貼り付けてください。
-  ul
-    - @classes.each do |k, v|
-      li
-        a href="/feeds?class=#{k.to_s.upcase}" = v
+  h3
+    | クラス別iCalフィード一覧
+
+  .table-responsive
+    table.table.table-hover
+      - @classes.each_with_index do |(k, v), i|
+        tr
+          td = v
+          td
+            a href="https://calendar.google.com/calendar/render?cid=http://jyugyou.mktakuya.net/feeds?class=#{k.to_s.upcase}"
+              | Googleカレンダーに追加
+          td
+            a href="webcal://jyugyou.mktakuya.net/feeds?class=#{k.to_s.upcase}"
+              | Webcal
+          td
+            = "http://jyugyou.mktakuya.net/feeds?class=#{k.to_s.upcase}"
 
