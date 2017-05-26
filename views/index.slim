@@ -1,26 +1,39 @@
 .col-md-12
-  p.alert.alert-danger
-    | ベータ版（試験版）のため突然使えなくなったりします。
-    a href='http://jyugyou.tomakomai-ct.ac.jp/jyugyou.php'
-      | 本家
-    | の授業変更情報も確認してください。
+  .panel.panel-default
+    .panel-body
+      p 苫小牧高専Webサイトの授業変更情報ページから授業変更情報を取得し、クラス別のiCalendarフィードを提供しています。
 
-  p 苫小牧高専Webサイトの授業変更情報ページから授業変更情報を取得し、クラス別のiCalendarフィードを提供しています。
+      p
+        | PCでGoogleカレンダーをお使いの方は「Googleカレンダーに追加」を、
+        | スマホやカレンダー.app等のカレンダーアプリをお使いの方は「Webcal」をクリックしてもらうと良さそうです。
 
-  h3
-    | クラス別iCalフィード一覧
+      p.pull-right
+        | 情報取得元：
+        a href="http://jyugyou.tomakomai-ct.ac.jp/jyugyou.php"
+          | 授業変更情報（苫小牧高専）
 
-  .table-responsive
-    table.table.table-hover
-      - @classes.each_with_index do |(k, v), i|
-        tr
-          td = v
-          td
-            a href="https://calendar.google.com/calendar/render?cid=http://jyugyou.mktakuya.net/feeds?class=#{k.to_s.upcase}"
-              | Googleカレンダーに追加
-          td
-            a href="webcal://jyugyou.mktakuya.net/feeds?class=#{k.to_s.upcase}"
-              | Webcal
-          td
-            = "http://jyugyou.mktakuya.net/feeds?class=#{k.to_s.upcase}"
+  .panel.panel-default
+    .panel-heading
+      h2 クラス別iCalフィード一覧
+    .panel-body
+      p.alert.alert-danger
+        | ベータ版（試験版）のため突然使えなくなったりします。
+        a href='http://jyugyou.tomakomai-ct.ac.jp/jyugyou.php'
+          | 本家
+        | の授業変更情報も確認してください。
+
+      .table-responsive
+        table.table.table-hover
+          tbody
+            - @classes.each_with_index do |(k, v), i|
+              tr
+                td = v
+                td.hidden-xs.hidden-sm
+                  a href="https://calendar.google.com/calendar/render?cid=http://jyugyou.mktakuya.net/feeds?class=#{k.to_s.upcase}"
+                    | Googleカレンダーに追加
+                td
+                  a href="webcal://jyugyou.mktakuya.net/feeds?class=#{k.to_s.upcase}"
+                    | Webcal
+                td
+                  = "http://jyugyou.mktakuya.net/feeds?class=#{k.to_s.upcase}"
 
