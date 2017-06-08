@@ -62,6 +62,12 @@ class Jyugyou < Sinatra::Base
     end
   end
 
+   after do
+     if @db
+       @db.disconnect
+     end
+   end
+
   helpers do
     def page_title(title = nil)
       base_title = 'TNCT授業変更情報 iCalendarフィード'
