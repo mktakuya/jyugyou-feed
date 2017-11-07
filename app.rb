@@ -19,8 +19,8 @@ class Jyugyou < Sinatra::Base
   end
 
   before do
-    connect_opt =  {"options"=>{"host"=>ENV['DB_HOST'], "user"=>ENV['DB_USER'], "password"=>ENV['DB_PASSWORD']}}
-    @db = Sequel.postgres('jyugyou', connect_opt)
+    connect_opt =  {"options"=>{"host"=>ENV['JYUGYOU_DB_HOST'], "user"=>ENV['JYUGYOU_DB_USER'], "password"=>ENV['JYUGYOU_DB_PASSWORD']}}
+    @db = Sequel.postgres(ENV['JYUGYOU_DB_NAME'], connect_opt)
   end
 
   get '/' do
